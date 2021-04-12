@@ -76,3 +76,16 @@ h1 {
     opacity: 1;
     pointer-events: all;
 }
+
+/* MOZILLA FIREFOX ONLY */
+@-moz-document url-prefix() {
+    .modals-body {
+      width: -moz-max-content;  /*This is the same as fit-content*/
+      margin: 0 auto;
+    }
+    @media screen and (max-width: 280px) {
+        #eventName {
+            width: 100px; /*Screen adjustment for the Galaxy Fold */
+        }
+    }
+  }

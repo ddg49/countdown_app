@@ -1,3 +1,4 @@
+// CODE FOR THE MODAL
 const openModalButtons = document.querySelectorAll('[data-modal-target]');
 const closeModalButtons = document.querySelectorAll('[data-close-button]');
 const overlay = document.getElementById('overlay');
@@ -34,3 +35,22 @@ overlay.addEventListener('click', () => {
         closeModal(modal)
     })
 })
+
+// CODE FOR ADDING THE COUNTDOWN
+const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
+
+const eventName = $("#eventName"); //name of the event
+
+function submit () {
+    const d = $("#date").val(); //get the value of the date input
+    const date = new Date(d);
+    const month = monthNames[date.getMonth()];
+    console.log(month);
+    const day = date.getUTCDate();
+    console.log(day);
+    const year = date.getFullYear();
+    console.log(year);
+    const t = $("#time").val(); //get the value of the time input
+    console.log(t);
+    
+}
