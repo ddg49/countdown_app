@@ -46,7 +46,7 @@ h1 {
 }
 
 .modals-body {
-    text-align: right;
+    text-align: left;
     width: fit-content;
     margin: 0 auto;
     padding-top: 10px;
@@ -112,7 +112,7 @@ ul {
 
 .fas {
     margin-right: 5px;
-    transition: 250ms ease-in-out;
+    transition: 230ms ease-in-out;
 }
 
 .fas:hover{
@@ -126,8 +126,22 @@ h5 {
     padding: 4px;
 }
 
+input {
+    border: 1px solid blue;
+    border-radius: 3px;
+}
 
+label, input {
+    margin-top: 7px;
+}
 
+label:nth-of-type(2) {
+    margin-left: 6px;
+}
+
+label:nth-of-type(3) {
+    margin-left: 5px;
+}
 
 /* MOZILLA FIREFOX ONLY */
 @-moz-document url-prefix() {

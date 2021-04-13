@@ -51,14 +51,13 @@ function submit () {
     let month = monthNames[date.getMonth()];
     let day = date.getDate();
     let year = date.getFullYear();
-
-    const time = $("#time").val(); //get the value of the time input
+    let time = $("#time").val(); //get the value of the time input
     //Changing miltary time to standard time. (Credit: Rahul Desai from stackoverflow.com) 
     let timeChanger = time + ":" + 0 + 0;
-    timeChanger = timeChanger.split(":")
-    var hours = Number(timeChanger[0]);
-    var minutes = Number(timeChanger[1]);
-    var timeValue;
+    timeChanger = timeChanger.split(":");
+    let hours = Number(timeChanger[0]);
+    let minutes = Number(timeChanger[1]);
+    let timeValue;
     if (hours > 0 && hours <= 12) {
     timeValue= "" + hours;
     } else if (hours > 12) {
@@ -68,11 +67,10 @@ function submit () {
     }
     timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
     timeValue += (hours >= 12) ? " PM" : " AM";  // get AM/PM
-    if (d === "" || time === "") {
-        alert("Please type in a valid date and time.")
+    if (d === "" || time === "" || year < 2021) {
+        alert("Please type in a valid date and time.");
     } else {
-    const formattedDate = `${month} ${day}, ${year} ${time}:${0}${0}`
-    console.log(formattedDate)
+    const formattedDate = `${month} ${day}, ${year} ${time}:${0}${0}`;
     const event = $("<li>");
     const t = $("<span>");
     trash = t.html("<i class='fas fa-trash-alt' ></i>"); //trash icon
@@ -108,16 +106,19 @@ function submit () {
         counter.html("Countdown ended.");
     }
     }, 1000);
-    event.append(trash)
-    counter.addClass("counter")
-    event.append(counter)
-    event.addClass("borders")
+    event.append(trash);
+    counter.addClass("counter");
+    event.append(counter);
+    event.addClass("borders");
     $("ul").append(event);
-    modal.classList.remove('active')
-    overlay.classList.remove('active') //close the modal after event is submitted
+    modal.classList.remove('active');
+    overlay.classList.remove('active'); //close the modal after event is submitted
+    eventName.val(''); //empty out all input values
+    $("#date").val('');
+    $("#time").val(''); 
 }
 }
 
 function deleteEvent (ownElement){
-    document.getElementById(ownElement).remove()  
+    document.getElementById(ownElement).remove();  
 }
