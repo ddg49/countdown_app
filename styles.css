@@ -83,7 +83,8 @@ h1 {
 
 li {
     list-style: none;
-    padding-right: 50px;
+    width: 100%;
+    text-align: center;
 }
 
 span {
@@ -94,12 +95,38 @@ span {
 ul {
     max-width: 400px;
     margin: 0 auto;
+    padding-right: 40px;
 }
 
 .counter {
     color: red;
-    padding-left: 50px;
+    font-size: 25px;
 }
+
+.borders {
+    border: solid 1px;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding-bottom: 5px;
+}
+
+.fas {
+    margin-right: 5px;
+    transition: 250ms ease-in-out;
+}
+
+.fas:hover{
+    cursor: pointer;
+    color: gray;
+    text-shadow: -1px -1px 0 rgba(167, 167, 167, 0.5), 1px -1px 0 rgba(167, 167, 167, 0.5), -1px 1px 0 rgba(167, 167, 167, 0.5), 1px 1px 0 rgba(167, 167, 167, 0.5);
+}
+
+h5 {
+    border-bottom: 1px solid black;
+    padding: 4px;
+}
+
+
 
 
 /* MOZILLA FIREFOX ONLY */
@@ -114,3 +141,4 @@ ul {
         }
     }
   }
+

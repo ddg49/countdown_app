@@ -48,53 +48,64 @@ function submit () {
     const day = date.getUTCDate();
     const year = date.getFullYear();
     const time = $("#time").val(); //get the value of the time input
+    //Changing miltary time to standard time. (Credit: Rahul Desai from stackoverflow.com) 
+    let timeChanger = time + ":" + 0 + 0;
+    timeChanger = timeChanger.split(":")
+    var hours = Number(timeChanger[0]);
+    var minutes = Number(timeChanger[1]);
+    var timeValue;
+    if (hours > 0 && hours <= 12) {
+    timeValue= "" + hours;
+    } else if (hours > 12) {
+    timeValue= "" + (hours - 12);
+    } else if (hours == 0) {
+    timeValue= "12";
+    }
+    timeValue += (minutes < 10) ? ":0" + minutes : ":" + minutes;  // get minutes
+    timeValue += (hours >= 12) ? " PM" : " AM";  // get AM/PM
     if (d === "" || time === "") {
         alert("Please type in a valid date and time.")
     } else {
     const formattedDate = `${month} ${day}, ${year} ${time}:${0}${0}`
-    console.log(formattedDate);
-
     const event = $("<li>");
     const t = $("<span>");
     trash = t.html("<i class='fas fa-trash-alt' ></i>"); //trash icon
-
+    const headDate = $("<h5>")
+    headDate.html(formattedDate.substr(0, 12) + " &nbsp;&nbsp;" + timeValue);
     let unique = new Date().getSeconds();
-    trash.attr("id", unique);
-    event.attr("id", unique); //Add the unique Date ID's
+    trash.attr("id", unique); //Add the unique Date ID's
+    event.attr("id", unique);
+    headDate.attr("id", unique); 
     trash.attr("onclick", 'deleteEvent(this.id)') //Pass in the unique ID of this particular element, which is the same ID of the parent.
-    event.html(eventName.val());
-    event.append(trash)
-
+    const name = eventName.val(); //name of the event stored in a variable
+    event.append(headDate);
+    event.append(name);
     const counter = $("<li>")
-
+    // Starting the countdown. (Help from w3schools.com)
     let countDownDate = new Date(formattedDate).getTime();
-
     // Update the count down every 1 second
     let x = setInterval(function() {
-
     // Get today's date and time
     let now = new Date().getTime();
-    
     // Find the distance between now and the count down date
     let distance = countDownDate - now;
-    
     // Time calculations for days, hours, minutes and seconds
     let days = Math.floor(distance / (1000 * 60 * 60 * 24));
     let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
     let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
     let seconds = Math.floor((distance % (1000 * 60)) / 1000);
-    
-    // Output the result in an element with id="demo"
+    // Output the result in the li 'counter'
     counter.html(days + "d " + hours + "h " + minutes + "m " + seconds + "s ");
-    
     // If the count down is over, write some text 
     if (distance < 0) {
         clearInterval(x);
-        counter.html("EXPIRED");
+        counter.html("Countdown ended.");
     }
     }, 1000);
+    event.append(trash)
     counter.addClass("counter")
     event.append(counter)
+    event.addClass("borders")
     $("ul").append(event);
     modal.classList.remove('active')
     overlay.classList.remove('active') //close the modal after event is submitted
