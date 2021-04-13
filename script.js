@@ -35,18 +35,23 @@ overlay.addEventListener('click', () => {
         closeModal(modal)
     })
 })
-
+//This function adds a day so we can fix the original date selected. This is because getDate() returns yesterday
+Date.prototype.addDays = function (days) {
+    let date = new Date(this.valueOf());
+    date.setDate(date.getDate() + days);
+    return date;
+  }
 // CODE FOR ADDING THE COUNTDOWN
 const monthNames = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"];
-
 const eventName = $("#eventName"); //name of the event
 
 function submit () {
-    const d = $("#date").val(); //get the value of the date input
-    const date = new Date(d);
-    const month = monthNames[date.getMonth()];
-    const day = date.getUTCDate();
-    const year = date.getFullYear();
+    let d = $("#date").val(); //get the value of the date input
+    let date = new Date(d).addDays(1); 
+    let month = monthNames[date.getMonth()];
+    let day = date.getDate();
+    let year = date.getFullYear();
+
     const time = $("#time").val(); //get the value of the time input
     //Changing miltary time to standard time. (Credit: Rahul Desai from stackoverflow.com) 
     let timeChanger = time + ":" + 0 + 0;
@@ -67,6 +72,7 @@ function submit () {
         alert("Please type in a valid date and time.")
     } else {
     const formattedDate = `${month} ${day}, ${year} ${time}:${0}${0}`
+    console.log(formattedDate)
     const event = $("<li>");
     const t = $("<span>");
     trash = t.html("<i class='fas fa-trash-alt' ></i>"); //trash icon
