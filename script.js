@@ -48,6 +48,9 @@ function submit () {
     const day = date.getUTCDate();
     const year = date.getFullYear();
     const time = $("#time").val(); //get the value of the time input
+    if (d === "" || time === "") {
+        alert("Please type in a valid date and time.")
+    } else {
     const formattedDate = `${month} ${day}, ${year} ${time}:${0}${0}`
     console.log(formattedDate);
 
@@ -63,6 +66,7 @@ function submit () {
     event.append(trash)
 
     const counter = $("<li>")
+
     let countDownDate = new Date(formattedDate).getTime();
 
     // Update the count down every 1 second
@@ -94,6 +98,7 @@ function submit () {
     $("ul").append(event);
     modal.classList.remove('active')
     overlay.classList.remove('active') //close the modal after event is submitted
+}
 }
 
 function deleteEvent (ownElement){
