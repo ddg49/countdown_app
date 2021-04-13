@@ -77,6 +77,31 @@ h1 {
     pointer-events: all;
 }
 
+#list {
+    text-align: center;
+}
+
+li {
+    list-style: none;
+    padding-right: 50px;
+}
+
+span {
+    display: flex;
+    justify-content: flex-end;
+}
+
+ul {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+.counter {
+    color: red;
+    padding-left: 50px;
+}
+
+
 /* MOZILLA FIREFOX ONLY */
 @-moz-document url-prefix() {
     .modals-body {
