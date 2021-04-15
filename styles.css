@@ -160,8 +160,8 @@ label:nth-of-type(3) {
     }
   }
 
-@media screen (max-width: 768px) {
-    input #time {
+@media screen and (max-width: 768px) {
+    input#time  {
         width: 115px;
     }
 }
